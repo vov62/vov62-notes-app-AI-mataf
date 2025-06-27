@@ -1,0 +1,56 @@
+<main class="container mx-auto">
+    <div class="newNoteBtn flex justify-center mb-8">
+        <button (click)="openModal()" class=" bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition flex
+            items-center cursor-pointer ">
+            פתק חדש
+            <svg xmlns=" http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- modal -->
+    <app-new-note-modal *ngIf="isModalOpen" [isOpen]="isModalOpen" [existingNote]="currentNote" (close)="closeModal()"
+        (save)="handleSave($event)" />
+
+    <!-- notes list -->
+    <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-h-[200px] p-4 bg-gray-100 rounded-lg">
+        <div *ngFor="let note of notes; let i = index" class="note p-4 rounded-lg relative" [ngClass]="{
+                    'bg-yellow-200': note.color === 'yellow',
+                    'bg-blue-200': note.color === 'blue',
+                    'bg-green-200': note.color === 'green',
+                    'bg-pink-200': note.color === 'pink'
+                    }">
+
+            <div class="note-content">{{ note.content }}</div>
+
+            <div class="flex gap-4 justify-between">
+                <div class="note-date text-sm text-gray-600 mt-2">
+                    נוצר: {{ note.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+                </div>
+
+                <div class="flex gap-1">
+                    <button (click)="openEditModal(i)"
+                        class="text-indigo-600 hover:text-indigo-800 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                    </button>
+                    <button (click)="deleteNote(i)"
+                        class="text-red-600 hover:text-red-800 transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>

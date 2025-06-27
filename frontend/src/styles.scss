@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+.note {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  transform: rotate(-1deg);
+  cursor: move;
+}
+
+.note:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: rotate(0deg) scale(1.02);
+}
+
+.note.yellow {
+  background-color: #fff9c4;
+}
+
+.note.blue {
+  background-color: #bbdefb;
+}
+
+.note.green {
+  background-color: #c8e6c9;
+}
+
+.note.pink {
+  background-color: #f8bbd0;
+}
+
+.ai-loading {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.note-date {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 8px;
+  text-align: left;
+}
