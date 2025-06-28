@@ -6,16 +6,6 @@
         <div class="mb-4">
             <label class="block text-gray-700 mb-2">צבע:</label>
             <div class="flex gap-2">
-                <!-- <button data-color="yellow"
-                    class="color-selector w-8 h-8 bg-yellow-200 rounded-full border-2 border-transparent hover:border-gray-400"></button>
-                <button data-color="blue"
-                    class="color-selector w-8 h-8 bg-blue-200 rounded-full border-2 border-transparent hover:border-gray-400"></button>
-                <button data-color="green"
-                    class="color-selector w-8 h-8 bg-green-200 rounded-full border-2 border-transparent hover:border-gray-400"></button>
-                <button data-color="pink"
-                    class="color-selector w-8 h-8 bg-pink-200 rounded-full border-2 border-transparent hover:border-gray-400"></button> -->
-
-
                 <button *ngFor="let color of ['yellow', 'blue', 'green', 'pink']" (click)="selectColor(color)"
                     [ngClass]="{
     'border-gray-400': selectedColor === color,
@@ -28,17 +18,26 @@
         <div class="mb-4">
             <label class="block text-gray-700 mb-2">תוכן:</label>
             <textarea [(ngModel)]="noteContent" class="w-full p-3 border border-gray-300 rounded-lg h-32"
-                placeholder="מה אתה רוצה לרשום?"></textarea>
+                placeholder="רשום פתק"></textarea>
         </div>
 
         <div class="flex justify-between items-center">
-            <button
-                class="text-blue-600 hover:text-blue-800 flex items-center px-4 py-2 bg-blue-100 rounded-lg cursor-pointer">
+            <button (click)="generateWithAi()"
+                class="text-blue-600 hover:text-blue-800 flex items-center px-4 py-2 bg-blue-100 rounded-lg cursor-pointer"
+                [disabled]="isLoadingAi">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path
                         d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                 </svg>
                 הצע ניסוח עם AI
+
+                <span *ngIf="isLoadingAi" class="absolute right-2 animate-spin">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
+                        <path d="M22 12a10 10 0 0 1-10 10" stroke-linecap="round" />
+                    </svg>
+                </span>
             </button>
 
             <div class="flex gap-2">

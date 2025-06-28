@@ -22,8 +22,7 @@
 
     <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-h-[200px] p-4 bg-gray-100 rounded-lg">
-        <div *ngFor="let note of notes; let i = index; trackBy: trackById" class="note p-4 rounded-lg relative"
-            [ngClass]="{
+        <div *ngFor="let note of notes; let i = index" class="note p-4 rounded-lg relative" [ngClass]="{
                     'bg-yellow-200': note.color === 'yellow',
                     'bg-blue-200': note.color === 'blue',
                     'bg-green-200': note.color === 'green',

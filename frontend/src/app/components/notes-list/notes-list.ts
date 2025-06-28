@@ -95,6 +95,7 @@ export class NotesList implements OnInit {
           ...noteToUpdate,
           ...note
         };
+        this.cd.detectChanges();
         this.closeModal();
       });
     } else {
@@ -105,9 +106,9 @@ export class NotesList implements OnInit {
     }
   }
 
-  trackById(index: number, note: Note): string {
-    return note.id ?? index.toString();
-  }
+  // trackById(index: number, note: Note): string {
+  //   return note.id ?? index.toString();
+  // }
 
 
   deleteNote(index: number) {
@@ -126,6 +127,7 @@ export class NotesList implements OnInit {
     }
     return null;
   }
+
 
   // deleteNote(index: number) {
   //   this.notes.splice(index, 1);

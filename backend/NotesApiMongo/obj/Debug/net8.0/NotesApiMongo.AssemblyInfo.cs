@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ce77c750-023f-404f-9d2d-2234a689875d")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("NotesApiMongo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4691193918455492f942fff451ba7222a11e1637")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb1208a9a2908e57b0f912912fd8c163e5bcc3e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("NotesApiMongo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NotesApiMongo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
