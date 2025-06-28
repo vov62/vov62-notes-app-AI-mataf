@@ -13,3 +13,5 @@ public class Note
     public string Color { get; set; } = "yellow";
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+
+

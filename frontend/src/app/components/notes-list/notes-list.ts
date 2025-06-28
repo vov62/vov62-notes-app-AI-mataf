@@ -30,7 +30,7 @@ export class NotesList implements OnInit {
   constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit הופעל');
+    // console.log('ngOnInit הופעל');
     this.fetchNotes();
   }
 
@@ -39,8 +39,8 @@ export class NotesList implements OnInit {
       next: (data) => {
         this.notes = data;
         this.cd.detectChanges();
-        console.log('קיבלנו מהשרת:', data);
-        console.table(this.notes)
+        // console.log('קיבלנו מהשרת:', data);
+        // console.table(this.notes)
 
       },
       error: (err) => console.error('שגיאה בטעינת פתקים', err)
@@ -50,11 +50,9 @@ export class NotesList implements OnInit {
 
 
   openModal() {
-    // this.isModalOpen = true;
     this.isModalOpen = true;
     this.isEditing = false;
     this.editIndex = null;
-
   }
 
   openEditModal(index: number) {
@@ -66,21 +64,6 @@ export class NotesList implements OnInit {
   closeModal() {
     this.isModalOpen = false;
   }
-
-  // handleSave(note: { content: string; color: string }) {
-  //   if (this.isEditing && this.editIndex !== null) {
-  //     this.notes[this.editIndex] = {
-  //       ...note,
-  //       createdAt: this.notes[this.editIndex].createdAt,
-  //     };
-  //   } else {
-  //     this.notes.push({
-  //       ...note,
-  //       createdAt: new Date(),
-  //     });
-  //   }
-  //   this.closeModal();
-  // }
 
 
   // save
@@ -106,20 +89,19 @@ export class NotesList implements OnInit {
     }
   }
 
-  // trackById(index: number, note: Note): string {
-  //   return note.id ?? index.toString();
-  // }
 
+  deleteNote(id: string | undefined) {
+    this.http.delete(`${this.API_URL}/${id}`).subscribe({
+      next: () => {
+        this.notes = this.notes.filter(n => n.id !== id),
+          this.cd.detectChanges();;
+      },
 
-  deleteNote(index: number) {
-    const note = this.notes[index];
-    if (!note.id) return;
-
-    this.http.delete(`${this.API_URL}/${note.id}`).subscribe(() => {
-      this.notes.splice(index, 1);
+      error: (err) => {
+        console.error('שגיאה במחיקת פתק:', err);
+      }
     });
   }
-
 
   get currentNote() {
     if (this.isEditing && this.editIndex !== null) {
@@ -127,17 +109,5 @@ export class NotesList implements OnInit {
     }
     return null;
   }
-
-
-  // deleteNote(index: number) {
-  //   this.notes.splice(index, 1);
-  // }
-
-  // get currentNote() {
-  //   if (this.isEditing && this.editIndex !== null) {
-  //     return this.notes[this.editIndex];
-  //   }
-  //   return null;
-  // }
 
 }

@@ -17,8 +17,10 @@ public class AiService
     }
 
     public async Task<string> GenerateNoteAsync(string prompt)
+
     {
         var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={_apiKey}";
+        var promptText = $"אתה עוזר אישי שמנסח פתקים יומיים. ניסח מחדש את הטקסט הבא בצורה ברורה, תמציתית ועם טון חיובי:\n\n{prompt}";
 
         var requestBody = new
         {
@@ -26,9 +28,10 @@ public class AiService
             {
                 new
                 {
+                    role ="user",
                     parts = new[]
                     {
-                        new { text = prompt }
+                        new { text = promptText }
                     }
                 }
             },
@@ -38,6 +41,8 @@ public class AiService
                 maxOutputTokens = 60
             }
         };
+
+
 
         var response = await _httpClient.PostAsJsonAsync(url, requestBody);
         if (!response.IsSuccessStatusCode)

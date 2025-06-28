@@ -3,6 +3,7 @@ using NotesApiMongo.Models;
 
 namespace NotesApiMongo.Services;
 
+
 public class NotesService
 {
     private readonly IMongoCollection<Note> _notesCollection;
@@ -31,3 +32,5 @@ public class NotesService
     public async Task DeleteAsync(string id) =>
         await _notesCollection.DeleteOneAsync(x => x.Id == id);
 }
+
+
