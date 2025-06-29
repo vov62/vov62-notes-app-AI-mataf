@@ -85,7 +85,8 @@ Users can improve or rewrite their notes using AI by clicking the "Rephrase" ("×
 
 1. The user writes a note and clicks the "Rephrase" button.
 
-2. A request is sent to the backend endpoint: POST /api/ai/rephrase.
+2. A request is sent to the backend endpoint:
+   POST api/ai/suggest rephrase.
 
 3. The backend uses an AI service via API (API key stored securely in User Secrets).
 
