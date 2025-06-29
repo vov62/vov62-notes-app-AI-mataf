@@ -47,3 +47,12 @@ C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\obj\Debug\net8.0\refi
 C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\obj\Debug\net8.0\NotesApiMongo.pdb
 C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\obj\Debug\net8.0\NotesApiMongo.genruntimeconfig.cache
 C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\obj\Debug\net8.0\ref\NotesApiMongo.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\Castle.Core.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\Moq.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xunit.abstractions.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xunit.assert.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xunit.core.dll
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xunit.execution.dotnet.dll

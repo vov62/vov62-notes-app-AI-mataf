@@ -20,6 +20,9 @@ builder.Services.AddCors(options =>
 builder.Services.Configure<NotesApiMongo.Models.NotesDatabaseSettings>(
     builder.Configuration.GetSection("NotesDatabase"));
 
+// builder.Services.Configure<NotesDatabaseSettings>(
+// builder.Configuration.GetSection("NotesDatabase"));
+
 // הוספת שירותי Notes
 builder.Services.AddSingleton<NotesService>();
 
