@@ -1,5 +1,5 @@
 <main class="container mx-auto">
-    <div class="newNoteBtn flex justify-center mb-8">
+    <div class="newNoteBtn flex justify-center mb-8 justify-start">
         <button (click)="openModal()" class=" bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition flex
             items-center cursor-pointer ">
             פתק חדש
@@ -8,6 +8,12 @@
                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                     clip-rule="evenodd" />
             </svg>
+        </button>
+    </div>
+
+    <div>
+        <button (click)=" logout()" class="bg-red-600 text-white px-3 py-1 rounded ml-auto">
+            התנתק
         </button>
     </div>
 

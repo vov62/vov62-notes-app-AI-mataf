@@ -17,6 +17,10 @@ public class NotesService
         _notesCollection = database.GetCollection<Note>(settings.NotesCollectionName);
     }
 
+    public async Task<List<Note>> GetByUsernameAsync(string username) =>
+        await _notesCollection.Find(n => n.Username == username).ToListAsync();
+
+
     public async Task<List<Note>> GetAsync() =>
         await _notesCollection.Find(_ => true).ToListAsync();
 

@@ -12,6 +12,7 @@ public class Note
     public string Content { get; set; } = string.Empty;
     public string Color { get; set; } = "yellow";
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public string Username { get; set; } = null!;
 }
 
 

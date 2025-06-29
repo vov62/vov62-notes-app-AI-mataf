@@ -1,54 +1,58 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using NotesApiMongo.Models;
 using NotesApiMongo.Services;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace NotesApiMongo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class NotesController : ControllerBase
 {
     private readonly NotesService _notesService;
 
-    public NotesController(NotesService notesService)
-    {
-        _notesService = notesService;
-    }
+    public NotesController(NotesService notesService) => _notesService = notesService;
 
     [HttpGet]
-    public async Task<ActionResult<List<Note>>> Get() =>
-        await _notesService.GetAsync();
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Note>> Get(string id)
+    public async Task<ActionResult<List<Note>>> Get()
     {
-        var note = await _notesService.GetAsync(id);
-
-        if (note is null) return NotFound();
-
-        return note;
+        var username = User.FindFirstValue(ClaimTypes.Name)!;
+        return await _notesService.GetByUsernameAsync(username);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Note newNote)
+    public async Task<IActionResult> Post(NoteDto noteDto)
     {
-        newNote.CreatedAt = DateTime.UtcNow;
-        await _notesService.CreateAsync(newNote);
+        var newNote = new Note
+        {
+            Content = noteDto.Content,
+            Color = noteDto.Color,
+            CreatedAt = DateTime.UtcNow,
+            Username = User.FindFirstValue(ClaimTypes.Name)!
+        };
 
+        await _notesService.CreateAsync(newNote);
         return CreatedAtAction(nameof(Get), new { id = newNote.Id }, newNote);
     }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(string id, Note updatedNote)
     {
-        var existingNote = await _notesService.GetAsync(id);
-        if (existingNote is null) return NotFound();
+        var existing = await _notesService.GetAsync(id);
+        var username = User.FindFirstValue(ClaimTypes.Name);
+
+        if (existing is null || existing.Username != username)
+            return Unauthorized();
 
         updatedNote.Id = id;
-        updatedNote.CreatedAt = existingNote.CreatedAt;
+        updatedNote.Username = username!;
+        updatedNote.CreatedAt = existing.CreatedAt;
 
         await _notesService.UpdateAsync(id, updatedNote);
-
         return NoContent();
     }
 
@@ -56,13 +60,15 @@ public class NotesController : ControllerBase
     public async Task<IActionResult> Delete(string id)
     {
         var note = await _notesService.GetAsync(id);
+        var username = User.FindFirstValue(ClaimTypes.Name);
 
-        if (note is null) return NotFound();
+        if (note is null || note.Username != username)
+            return Unauthorized();
 
         await _notesService.DeleteAsync(id);
-
         return NoContent();
     }
+
 }
 
 

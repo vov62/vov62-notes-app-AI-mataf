@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NoteModal } from '../new-note-modal/new-note-modal';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 
 interface Note {
@@ -27,7 +29,7 @@ export class NotesList implements OnInit {
   editIndex: number | null = null;
   readonly API_URL = 'http://localhost:5037/api/Notes';
 
-  constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     // console.log('ngOnInit הופעל');
@@ -108,6 +110,12 @@ export class NotesList implements OnInit {
       return this.notes[this.editIndex];
     }
     return null;
+  }
+
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 
 }
