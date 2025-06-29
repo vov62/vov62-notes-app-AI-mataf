@@ -1,4 +1,3 @@
-// src/app/interceptors/jwt.interceptor.ts
 import { inject } from '@angular/core';
 import {
     HttpEvent,

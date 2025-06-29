@@ -11,7 +11,6 @@ export class VoiceRecorderService {
 
     constructor(private http: HttpClient) { }
 
-    /** returns true if the browser supports MediaRecorder */
     get supported(): boolean {
         return !!(navigator.mediaDevices && (window as any).MediaRecorder);
     }
@@ -25,7 +24,6 @@ export class VoiceRecorderService {
         this.recorder.start();
     }
 
-    /** stops the recorder, uploads the blob and returns server response text */
     async stopAndUpload(token: string | null): Promise<string> {
         if (!this.recorder) throw new Error('Recorder not started');
 
@@ -34,7 +32,6 @@ export class VoiceRecorderService {
             this.recorder!.stop();
         });
 
-        // build multipart/form‑data
         const form = new FormData();
         form.append('audio', blob, 'note.webm');
 
