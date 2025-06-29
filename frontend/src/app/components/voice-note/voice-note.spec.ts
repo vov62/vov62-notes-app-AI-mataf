@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotesList } from './notes-list';
+import { VoiceNote } from './voice-note';
 
-describe('NotesList', () => {
-  let component: NotesList;
-  let fixture: ComponentFixture<NotesList>;
+describe('VoiceNote', () => {
+  let component: VoiceNote;
+  let fixture: ComponentFixture<VoiceNote>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotesList]
+      imports: [VoiceNote]
     })
-      .compileComponents();
+    .compileComponents();
 
-    fixture = TestBed.createComponent(NotesList);
+    fixture = TestBed.createComponent(VoiceNote);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -21,5 +21,3 @@ describe('NotesList', () => {
     expect(component).toBeTruthy();
   });
 });
-
-

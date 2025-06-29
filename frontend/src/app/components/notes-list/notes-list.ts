@@ -4,6 +4,7 @@ import { NoteModal } from '../new-note-modal/new-note-modal';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+// import { VoiceNote } from '../voice-note/voice-note';
 
 
 interface Note {
@@ -116,3 +117,4 @@ export class NotesList implements OnInit {
   }
 
 }
+

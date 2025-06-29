@@ -1,4 +1,4 @@
-# 🗒️ Sticky Notes App with AI
+# 🗒️ Smart Notes App with AI
 
 A smart digital sticky notes app with AI-powered text rewriting.
 
@@ -93,3 +93,12 @@ Users can improve or rewrite their notes using AI by clicking the "Rephrase" ("�
 4. The AI returns a rephrased version of the note.
 
 5. The updated text is displayed to the user.
+
+### Upcoming Feature: Voice-to-Note with Whisper API
+
+- This project is being extended to support voice note transcription using OpenAI's Whisper API.
+
+- Planned capabilities:
+  Users will be able to record a voice message directly from the browser.
+  The recording will be sent to the backend and transcribed into text using Whisper.
+  The transcribed note will be saved as a new sticky note in the system.

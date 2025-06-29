@@ -20,13 +20,15 @@
         </button>
     </div>
 
+    <!-- for future voice-note  -->
+    <!-- <app-voice-note></app-voice-note> -->
+
 
     <!-- modal -->
     <app-new-note-modal *ngIf="isModalOpen" [isOpen]="isModalOpen" [existingNote]="currentNote" (close)="closeModal()"
         (save)="handleSave($event)" />
 
     <!-- notes list -->
-
     <div class="text-green-600" *ngIf="notes.length === 0">
         הוסף פתקים ללוח
     </div>

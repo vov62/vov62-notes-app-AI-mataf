@@ -1,0 +1,10 @@
+<div class="p-4 border rounded shadow-md max-w-md mx-auto text-center">
+    <button (click)="toggleRecording()" class="px-4 py-2 bg-blue-600 text-white rounded">
+        {{ isRecording ? 'עצור הקלטה' : 'התחל הקלטה' }}
+    </button>
+
+    <div class="mt-4" *ngIf="text">
+        <h3 class="font-bold mb-2">תוצאה מהקלטה:</h3>
+        <p class="bg-gray-100 p-2 rounded">{{ text }}</p>
+    </div>
+</div>
