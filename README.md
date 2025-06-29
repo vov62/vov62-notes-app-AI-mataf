@@ -71,4 +71,24 @@ A smart digital sticky notes app with AI-powered text rewriting.
 
 ### Using AI for Rephrasing
 
-When the user clicks the “Rephrase” (" ניסוח עם AI ") button, the note content is sent to Gemini API (GPT model) to receive a reworded version
+Users can improve or rewrite their notes using AI by clicking the "Rephrase" ("ניסוח עם AI) button. This triggers a flow where the content of the note is sent to the backend, which then communicates with an AI provider (in this case Gemini API ) to receive a rephrased version.
+
+### User note text
+
+![alt text](homepage2.png)
+
+### Note after AI rewrite Note
+
+![alt text](<home page 3.png>)
+
+### Flow Overview
+
+1. The user writes a note and clicks the "Rephrase" button.
+
+2. A request is sent to the backend endpoint: POST /api/ai/rephrase.
+
+3. The backend uses an AI service via API (API key stored securely in User Secrets).
+
+4. The AI returns a rephrased version of the note.
+
+5. The updated text is displayed to the user.
