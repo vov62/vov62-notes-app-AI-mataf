@@ -37,7 +37,8 @@ public class AuthController : ControllerBase
             PasswordHash = hashedPassword
         };
         _userService.AddUser(user);
-        return Ok("נרשמת בהצלחה");
+        Console.WriteLine($"נרשמת בהצלחה: {request.Username}");
+        return Ok(new { message = "נרשמת בהצלחה" });
     }
 
     [HttpPost("login")]

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -15,26 +15,30 @@ import { Router } from '@angular/router';
 export class Register {
   username = '';
   password = '';
-  message = '';
   error = ''
+  isLoading = false
+  apiPostUrl = 'http://localhost:5037/api/auth/register'
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private cd: ChangeDetectorRef) { }
 
   register() {
     if (!this.username.trim() || !this.password.trim()) {
       this.error = 'יש למלא שם משתמש וסיסמה';
       return;
     }
-
-    this.http.post('http://localhost:5037/api/auth/register', {
+    this.isLoading = true
+    this.http.post(this.apiPostUrl, {
       username: this.username,
       password: this.password
     }).subscribe({
       next: () => {
-        this.message = 'נרשמת בהצלחה!';
-        this.router.navigate(['/login'])
+        alert('נרשמת בהצלחה!');
+        this.isLoading = false;
+        this.router.navigate(['/login']);
+      }, error: () => {
+        this.isLoading = false;
+        this.error = 'שגיאה בהרשמה: ';
       },
-      error: err => this.message = 'שגיאה: ' + err.error
     });
   }
 

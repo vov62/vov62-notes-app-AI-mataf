@@ -28,12 +28,13 @@ export class NotesList implements OnInit {
   isEditing = false;
   editIndex: number | null = null;
   readonly API_URL = 'http://localhost:5037/api/Notes';
+  username: string | null = null;
 
   constructor(private http: HttpClient, private cd: ChangeDetectorRef, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // console.log('ngOnInit הופעל');
     this.fetchNotes();
+    this.username = this.auth.getUsernameFromToken();
   }
 
   fetchNotes() {
@@ -41,13 +42,9 @@ export class NotesList implements OnInit {
       next: (data) => {
         this.notes = data;
         this.cd.detectChanges();
-        // console.log('קיבלנו מהשרת:', data);
-        // console.table(this.notes)
-
       },
       error: (err) => console.error('שגיאה בטעינת פתקים', err)
     });
-
   }
 
 
@@ -66,7 +63,6 @@ export class NotesList implements OnInit {
   closeModal() {
     this.isModalOpen = false;
   }
-
 
   // save
   handleSave(note: { content: string; color: string }) {
@@ -90,7 +86,6 @@ export class NotesList implements OnInit {
       });
     }
   }
-
 
   deleteNote(id: string | undefined) {
     this.http.delete(`${this.API_URL}/${id}`).subscribe({

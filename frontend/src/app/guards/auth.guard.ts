@@ -6,9 +6,9 @@ export const AuthGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (auth.isLoggedIn()) {         // יש JWT תקף
+  if (auth.isLoggedIn()) {
     return true;
   }
-  router.navigate(['/login']);     // אין טוקן → Login
+  router.navigate(['/login']);
   return false;
 };

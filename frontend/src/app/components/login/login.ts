@@ -15,6 +15,7 @@ export class Login {
   username = '';
   password = '';
   error = '';
+  isLoading = false;
 
   constructor(private auth: AuthService, private router: Router, private cd: ChangeDetectorRef) { }
 
@@ -25,12 +26,16 @@ export class Login {
       return;
     }
 
+    this.isLoading = true;
+
     this.auth.login(this.username, this.password).subscribe({
       next: (res) => {
         this.auth.saveToken(res.token);
+        this.isLoading = false;
         this.router.navigate(['/']);
       },
-      error: (err) => {
+      error: () => {
+        this.isLoading = false;
         this.error = 'שם משתמש או סיסמה שגויים. נסה שוב או עבור להרשמה';
         this.cd.detectChanges()
       }

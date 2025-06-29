@@ -32,4 +32,26 @@ export class AuthService {
     isLoggedIn(): boolean {
         return !!this.getToken();
     }
+
+
+    getUsernameFromToken(): string | null {
+        const token = this.getToken();
+        if (!token) return null;
+
+        try {
+            const payload = token.split('.')[1];
+            const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+            const binary = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+            const jsonString = new TextDecoder().decode(binary); // ⬅️ UTF‑8 תקין
+            const parsed = JSON.parse(jsonString);
+
+            return parsed["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+                ?? parsed.username
+                ?? parsed.sub
+                ?? null;
+        } catch {
+            return null;
+        }
+    }
+
 }
