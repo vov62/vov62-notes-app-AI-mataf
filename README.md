@@ -63,7 +63,7 @@ A smart digital sticky notes app with AI-powered text rewriting.
 
 ### Home Page
 
-![alt text](homepage.png)
+![alt text](./frontend/public/homepage.png)
 
 ### New Note Screen
 
