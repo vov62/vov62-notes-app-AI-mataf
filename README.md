@@ -59,7 +59,7 @@ A smart digital sticky notes app with AI-powered text rewriting.
 
 ### Login Screen
 
-![alt text](login.png)
+![alt text](./frontend/public/login.png)
 
 ### Home Page
 
@@ -67,7 +67,7 @@ A smart digital sticky notes app with AI-powered text rewriting.
 
 ### New Note Screen
 
-![alt text](<new note.png>)
+![alt text](<./frontend/public/new note.png>)
 
 ### Using AI for Rephrasing
 
@@ -75,11 +75,11 @@ Users can improve or rewrite their notes using AI by clicking the "Rephrase" ("×
 
 ### User note text
 
-![alt text](homepage2.png)
+![alt text](./frontend/public/homepage2.png)
 
 ### Note after AI rewrite Note
 
-![alt text](<home page 3.png>)
+![alt text](<./frontend/public/home page 3.png>)
 
 ### Flow Overview
 
