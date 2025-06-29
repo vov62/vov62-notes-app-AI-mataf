@@ -66,15 +66,17 @@ export class NotesList implements OnInit {
 
   // save
   handleSave(note: { content: string; color: string }) {
+    const username = this.auth.getUsernameFromToken();
     if (this.isEditing && this.editIndex !== null) {
       const noteToUpdate = this.notes[this.editIndex];
       this.http.put(`${this.API_URL}/${noteToUpdate.id}`, {
         ...noteToUpdate,
-        ...note
+        ...note,
+        username
       }).subscribe(() => {
         this.notes[this.editIndex!] = {
           ...noteToUpdate,
-          ...note
+          ...note,
         };
         this.cd.detectChanges();
         this.closeModal();
