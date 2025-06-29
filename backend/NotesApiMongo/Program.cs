@@ -20,9 +20,6 @@ builder.Services.AddCors(options =>
 builder.Services.Configure<NotesApiMongo.Models.NotesDatabaseSettings>(
     builder.Configuration.GetSection("NotesDatabase"));
 
-// builder.Services.Configure<NotesDatabaseSettings>(
-// builder.Configuration.GetSection("NotesDatabase"));
-
 // הוספת שירותי Notes
 builder.Services.AddSingleton<NotesService>();
 
@@ -63,11 +60,9 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// ✨ הפעלת CORS (לפני UseAuthorization!)
+//  הפעלת CORS (לפני UseAuthorization!)
 app.UseCors("AllowAngularApp");
 
-// מפנה את הפניה ל HTTPS
-// app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
