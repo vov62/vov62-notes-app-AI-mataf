@@ -39,6 +39,7 @@ A smart digital sticky notes app with AI-powered text rewriting.
 
 - cd backend/NotesApiMongo
 - dotnet restore
+- on file appsettings.example.json, enter on field "Key": "REPLACE_WITH_YOUR_KEY", - key with more than 32 letters.
 - dotnet run
 
 \*\*\* notice
