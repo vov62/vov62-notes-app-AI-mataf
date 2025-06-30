@@ -16,6 +16,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+
 //  קונפיגורציית MongoDB
 builder.Services.Configure<NotesApiMongo.Models.NotesDatabaseSettings>(
     builder.Configuration.GetSection("NotesDatabase"));
@@ -48,7 +50,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!)),
+
         };
     });
 
@@ -60,9 +63,11 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-//  הפעלת CORS (לפני UseAuthorization!)
+// ✨ הפעלת CORS (לפני UseAuthorization!)
 app.UseCors("AllowAngularApp");
 
+// מפנה את הפניה ל HTTPS
+// app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
