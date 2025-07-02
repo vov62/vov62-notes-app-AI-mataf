@@ -2,17 +2,10 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NoteModal } from '../new-note-modal/new-note-modal';
 import { HttpClient } from '@angular/common/http';
+import { NotesService } from '../../services/notes.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 // import { VoiceNote } from '../voice-note/voice-note';
-
-
-interface Note {
-  id?: string;
-  content: string;
-  color: string;
-  createdAt: Date;
-}
 
 @Component({
   selector: 'app-notes-list',
@@ -22,32 +15,21 @@ interface Note {
   styleUrls: ['./notes-list.scss']
 })
 
-
 export class NotesList implements OnInit {
   isModalOpen = false;
-  notes: Note[] = [];
+  notes: any[] = [];
   isEditing = false;
   editIndex: number | null = null;
-  readonly API_URL = 'http://localhost:5037/api/Notes';
   username: string | null = null;
 
-  constructor(private http: HttpClient, private cd: ChangeDetectorRef, private auth: AuthService, private router: Router) { }
+  constructor(private http: HttpClient, private notesSrv: NotesService, private cd: ChangeDetectorRef, private auth: AuthService, private router: Router) {
+    this.getNotes()
+  }
 
   ngOnInit(): void {
-    this.fetchNotes();
+    this.getNotes();
     this.username = this.auth.getUsernameFromToken();
   }
-
-  fetchNotes() {
-    this.http.get<Note[]>(this.API_URL).subscribe({
-      next: (data) => {
-        this.notes = data;
-        this.cd.detectChanges();
-      },
-      error: (err) => console.error('שגיאה בטעינת פתקים', err)
-    });
-  }
-
 
   openModal() {
     this.isModalOpen = true;
@@ -65,12 +47,23 @@ export class NotesList implements OnInit {
     this.isModalOpen = false;
   }
 
-  // save
+
+  getNotes() {
+    this.notesSrv.loadNotes().subscribe({
+      next: (data) => {
+        this.notes = data
+        this.cd.detectChanges();
+      },
+      error: (err) => console.error('שגיאה בטעינת פתקים', err)
+
+    })
+  }
+
   handleSave(note: { content: string; color: string }) {
     const username = this.auth.getUsernameFromToken();
     if (this.isEditing && this.editIndex !== null) {
       const noteToUpdate = this.notes[this.editIndex];
-      this.http.put(`${this.API_URL}/${noteToUpdate.id}`, {
+      this.notesSrv.updateNote(`${noteToUpdate.id}`, {
         ...noteToUpdate,
         ...note,
         username
@@ -83,20 +76,19 @@ export class NotesList implements OnInit {
         this.closeModal();
       });
     } else {
-      this.http.post<Note>(this.API_URL, note).subscribe(() => {
-        this.fetchNotes();
+      this.notesSrv.createNote(note).subscribe(() => {
+        this.getNotes();
         this.closeModal();
       });
     }
   }
 
-  deleteNote(id: string | undefined) {
-    this.http.delete(`${this.API_URL}/${id}`).subscribe({
+  deleteNote(id: string) {
+    this.notesSrv.deleteNote(id).subscribe({
       next: () => {
         this.notes = this.notes.filter(n => n.id !== id),
           this.cd.detectChanges();;
       },
-
       error: (err) => {
         console.error('שגיאה במחיקת פתק:', err);
       }

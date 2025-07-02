@@ -1,4 +1,3 @@
-// src/app/services/notes.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,11 +13,11 @@ export interface Note {
     providedIn: 'root',
 })
 export class NotesService {
-    private apiUrl = 'http://localhost:5037/api/note';
+    private apiUrl = 'http://localhost:5037/api/notes';
 
     constructor(private http: HttpClient) { }
 
-    getNotes(): Observable<Note[]> {
+    loadNotes(): Observable<Note[]> {
         return this.http.get<Note[]>(this.apiUrl);
     }
 

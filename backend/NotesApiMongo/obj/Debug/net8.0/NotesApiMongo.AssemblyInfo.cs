@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NotesApiMongo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29cd431c226c96a9aead5a708de01c111376dd0f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab0955eb53252b9f274f57be64874366c9426e15")]
 [assembly: System.Reflection.AssemblyProductAttribute("NotesApiMongo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NotesApiMongo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

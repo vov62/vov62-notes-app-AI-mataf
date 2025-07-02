@@ -56,3 +56,4 @@ C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xuni
 C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xunit.core.dll
 C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\xunit.execution.dotnet.dll
 C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\appsettings.json
+C:\Users\Avi -v-\Desktop\msg project\backend\NotesApiMongo\bin\Debug\net8.0\appsettings.example.json
